@@ -12,6 +12,9 @@ public class Ceiling {   // also fixed class name (capital C)
 
 
     static int ceilingSearching(int[] arr, int target) {
+        if (target > arr.length-1){
+            return -1;
+        }
         int start = 0;
         int end = arr.length - 1;
 
