@@ -9,6 +9,7 @@ public class BubbleSort {
     System.out.println(Arrays.toString(arr));
   }
   static void bubbleSort(int[] arr){
+    // boolean condition to check if the array is already sorted or not if yes then the loop breaks
     boolean swapped;
     for (int i = 0; i < arr.length; i++) {
 swapped = false;
