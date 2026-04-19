@@ -1,7 +1,7 @@
 package sorting;
 
 import java.util.Arrays;
-
+//bubble sort
 public class BubbleSort {
   public static void main(String[] args) {
     int [] arr = {2,5,8,7,9,3,11,6};
