@@ -14,8 +14,8 @@ int ans = LinearSearching(nums, target);
         }
 
             for (int i = 0; i < arr.length; i++) {
-            int element = arr[i];
-               if(element == target){
+
+               if(arr[i] == target){
                    return i;
 
                }
