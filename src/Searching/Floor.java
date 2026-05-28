@@ -3,7 +3,7 @@ package Searching;
 public class Floor {
     public static void main(String[] args) {
         int[] arr = {2, 3, 4, 5, 6, 7, 7, 7, 8, 9, 11, 45, 67, 78, 98};
-        int target = 79;
+        int target = 10;
 
         int ans =floorSearching(arr, target);
         System.out.println(ans);
@@ -22,9 +22,9 @@ public class Floor {
             } else if (target > arr[mid]) {
                 start = mid + 1;
             } else {
-                return mid;
+                return arr[mid];
             }
         }
-        return end;
+        return arr[end];
     }
 }
