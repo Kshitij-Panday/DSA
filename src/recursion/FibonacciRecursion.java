@@ -9,6 +9,7 @@ public class FibonacciRecursion {
     if(n < 2){
       return n;
     }
+    //this is not tail recursion
     return fibo(n-1) + fibo(n-2);
   }
 }
