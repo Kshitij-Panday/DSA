@@ -12,6 +12,8 @@ public class NumbersExampleRecursion {
     System.out.println(n);
 
     //recursive call
+    //this is the last function call in the recursion
+    //this is called tail recursion
     print(n+1);
   }
 
