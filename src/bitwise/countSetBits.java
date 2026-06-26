@@ -5,7 +5,7 @@ public class countSetBits {
     int n = 10;
     System.out.println(Integer.toBinaryString(n));
 
-    System.out.println(count(n));
+    System.out.println(count(n)); // time complexity = O(log(n));
   }
   private static int count(int n){
     int count = 0;
