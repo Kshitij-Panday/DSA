@@ -1,4 +1,4 @@
-package basics;
+package bitwise;
 
 public class OddEvenBitwise {
   public static void main(String[] args) {

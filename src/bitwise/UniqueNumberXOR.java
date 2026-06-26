@@ -1,4 +1,4 @@
-package basics;
+package bitwise;
 
 public class UniqueNumberXOR {
   public static void main(String[] args) {
