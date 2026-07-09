@@ -7,7 +7,8 @@ public class CountZeros {
   static int count(int n){
     return helper(n,0); // 0 is the initial count set by us.
   }
-  static int helper(int n , int c) {
+  //special pattern, used for passing a value to above calls.
+  private static int helper(int n , int c) {
     if (n == 0) {
       return c;
     }
