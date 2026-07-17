@@ -31,7 +31,7 @@ public class MergeSortInPlace {
   }
 
   static void mergeInPlace(int[] arr, int s, int mid, int e) {
-    int[] mix = new int[e - s];
+    int[] mix = new int[e - s]; //e -s is the length of the array now.
 
     int i = s;
     int j = mid;
@@ -40,20 +40,28 @@ public class MergeSortInPlace {
     // Merge both halves
     while (i < mid && j < e) {
       if (arr[i] < arr[j]) {
-        mix[k++] = arr[i++];
+        mix[k] = arr[i];
+        i++;
+        k++;
       } else {
-        mix[k++] = arr[j++];
+        mix[k] = arr[j];
+        j++;
+        k++;
       }
     }
 
     // Copy remaining elements of left half
     while (i < mid) {
-      mix[k++] = arr[i++];
+      mix[k] = arr[i];
+      i++;
+      k++;
     }
 
     // Copy remaining elements of right half
     while (j < e) {
-      mix[k++] = arr[j++];
+      mix[k] = arr[j];
+      j++;
+      k++;
     }
 
     // Copy merged array back to original array
