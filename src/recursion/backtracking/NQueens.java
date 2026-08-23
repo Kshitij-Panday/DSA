@@ -32,7 +32,7 @@ boolean[][] board = new boolean[n][n];
 
     // check vertical row
     for (int i = 0; i < row; i++) {
-      if (board[i][col] == true) {
+      if (board[i][col]) {
         return false;
       }
     }
