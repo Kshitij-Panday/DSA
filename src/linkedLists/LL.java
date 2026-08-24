@@ -4,131 +4,241 @@ public class LL {
 
   private Node head;
   private Node tail;
-
   private int size;
-  public LL(){
+
+  public LL() {
     this.size = 0;
   }
 
-    public void insertFirst(int value){
+  // Insert at beginning
+  public void insertFirst(int value) {
+
     Node newNode = new Node(value);
+
     newNode.next = head;
     head = newNode;
 
-    if (tail == null){
+    if (tail == null) {
       tail = head;
     }
-    size += 1;
-    }
 
-    public void insert(int value,int index){
-    if (index > size){
-      System.out.println("Index exceeds list size");
+    size++;
+  }
+
+  // Insert at any index
+  public void insert(int value, int index) {
+
+    if (index < 0 || index > size) {
+      System.out.println("Invalid index");
       return;
     }
-    if (index == 0){
+
+    if (index == 0) {
       insertFirst(value);
       return;
     }
-    if (index == size){
+
+    if (index == size) {
       insertLast(value);
       return;
     }
+
     Node temp = head;
-      for (int i = 1; i < index; i++) {
-        temp= temp.next;
-      }
-  Node newNode = new Node(value,temp.next);
-      temp.next= newNode;
-     size++;
+
+    for (int i = 1; i < index; i++) {
+      temp = temp.next;
     }
 
-    public void insertLast(int value){
+    Node newNode = new Node(value, temp.next);
+
+    temp.next = newNode;
+
+    size++;
+  }
+
+  // Insert at end
+  public void insertLast(int value) {
+
     Node newNode = new Node(value);
 
-    if (tail == null){
-      insertFirst(value);
+    if (tail == null) {
+      head = newNode;
+      tail = newNode;
+      size++;
       return;
     }
+
     tail.next = newNode;
     tail = newNode;
+
     size++;
+  }
+
+  // Insert using recursion
+  public void insertRec(int value, int index) {
+
+    if (index < 0 || index > size) {
+      System.out.println("Invalid index");
+      return;
     }
 
-    public int deleteFirst() {
-      int value = head.value;
-      head = head.next;
-      if (head == null){
-        tail = null;
-      }
-      size--;
-      return value;
+    head = insertRec(value, index, head);
+
+    // If inserted at the end, update tail
+    if (index == size - 1) {
+      tail = get(size - 1);
+    }
+  }
+
+  private Node insertRec(int value, int index, Node node) {
+
+    if (index == 0) {
+
+      Node temp = new Node(value, node);
+
+      size++;
+
+      return temp;
     }
 
-    public int deleteLast(){
-    if (size<= 1){
+    node.next = insertRec(value, index - 1, node.next);
+
+    return node;
+  }
+
+  // Delete first element
+  public int deleteFirst() {
+
+    if (head == null) {
+      System.out.println("List is empty");
+      return -1;
+    }
+
+    int value = head.value;
+
+    head = head.next;
+
+    if (head == null) {
+      tail = null;
+    }
+
+    size--;
+
+    return value;
+  }
+
+  // Delete last element
+  public int deleteLast() {
+
+    if (size <= 1) {
       return deleteFirst();
     }
-    Node secondLast = get(size-2);
+
+    Node secondLast = get(size - 2);
+
     int value = tail.value;
+
     tail = secondLast;
     tail.next = null;
+
     size--;
+
     return value;
+  }
+
+  // Delete element at index
+  public int deleteAtIndex(int index) {
+
+    if (head == null) {
+      System.out.println("List is empty");
+      return -1;
     }
-    public int deleteAtIndex(int index){
-    if ( index == 0){
+
+    if (index < 0 || index >= size) {
+      System.out.println("Invalid index");
+      return -1;
+    }
+
+    if (index == 0) {
       return deleteFirst();
     }
-    if (index == size-1){
+
+    if (index == size - 1) {
       return deleteLast();
     }
-    Node prevNode = get(index-1);
+
+    Node prevNode = get(index - 1);
+
     int value = prevNode.next.value;
 
     prevNode.next = prevNode.next.next;
+
     size--;
+
     return value;
+  }
+
+  // Get node at index
+  public Node get(int index) {
+
+    if (index < 0 || index >= size) {
+      return null;
     }
 
-    public Node get(int index){
     Node node = head;
-      for (int i = 0; i < index; i++) {
-        node = node.next;
-      }
-       return node;
-    }
 
-    public Node findByValue(int value){
-    Node node = head;
-    while(node != null){
-      if (node.value == value){
-        return node;
-      }
+    for (int i = 0; i < index; i++) {
       node = node.next;
     }
-    return null;
+
+    return node;
+  }
+
+  // Find node by value
+  public Node findByValue(int value) {
+
+    Node node = head;
+
+    while (node != null) {
+
+      if (node.value == value) {
+        return node;
+      }
+
+      node = node.next;
     }
 
-    public void display(){
+    return null;
+  }
+
+  // Display linked list
+  public void display() {
+
     Node temp = head;
-    while(temp != null){
-      System.out.print(temp.value + "->");
+
+    while (temp != null) {
+
+      System.out.print(temp.value + " -> ");
+
       temp = temp.next;
     }
-      System.out.println("END");
-    }
-  private class Node{
+
+    System.out.println("END");
+  }
+
+  // Node class
+  private class Node {
+
     private int value;
     private Node next;
 
-  public Node(int value){
-    this.value = value;
+    public Node(int value) {
+      this.value = value;
     }
-    public Node(int value, Node next){
+
+    public Node(int value, Node next) {
       this.value = value;
       this.next = next;
+    }
   }
-  }
-
 }
