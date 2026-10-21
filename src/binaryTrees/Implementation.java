@@ -32,6 +32,12 @@ public class Implementation {
 
     System.out.print("Product of the Tree is : ");
     System.out.println(product(a));
+
+    System.out.print("Maximum Value of the Tree is : ");
+    System.out.println(maximum(a));
+
+    System.out.print("Levels of the Tree is : ");
+    System.out.println(levels(a));
   }
 
   private static int size(Node root) {
@@ -47,6 +53,16 @@ public class Implementation {
   private static int product(Node root){
     if (root == null) return 1;
     return root.val*product(root.left)*product(root.right);
+  }
+
+  private static int maximum(Node root){
+    if (root == null) return Integer.MIN_VALUE;
+    return Math.max(root.val,Math.max(maximum(root.left),maximum(root.right)));
+  }
+
+  private static int levels(Node root){
+    if (root == null) return 0;
+    return 1+ Math.max(levels(root.left),levels(root.right));
   }
 
   private static void display(Node root){
