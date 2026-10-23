@@ -1,4 +1,8 @@
 package binaryTrees;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 class Node{
   int val;
   Node left;
@@ -6,6 +10,16 @@ class Node{
 
   Node(int val){
     this.val = val;
+  }
+}
+
+class Pair{
+  Node node;
+  int level;
+
+  Pair(Node node , int level){
+    this.node = node;
+    this.level = level;
   }
 }
 public class Implementation {
@@ -38,6 +52,12 @@ public class Implementation {
 
     System.out.print("Levels of the Tree is : ");
     System.out.println(levels(a));
+
+    System.out.println("Level Order Traversal of the Tree");
+    levelOrderTraversal(a);
+
+    System.out.println("level Order Traversal Level Wise of the Tree");
+    levelOrderTraversalLevelWise(a);
   }
 
   private static int size(Node root) {
@@ -63,6 +83,35 @@ public class Implementation {
   private static int levels(Node root){
     if (root == null) return 0;
     return 1+ Math.max(levels(root.left),levels(root.right));
+  }
+
+  private static void levelOrderTraversal(Node root){
+    Queue<Node> q = new LinkedList<>();
+    q.add(root);
+    while(!q.isEmpty()){
+      Node front = q.remove();
+      System.out.print(front.val+" ");
+      if (front.left!=null) q.add(front.left);
+      if (front.right!=null) q.add(front.right);
+    }
+    System.out.println();
+  }
+
+  private static void levelOrderTraversalLevelWise(Node root){
+    Queue<Pair> q = new LinkedList<>();
+    int currentLevel = 0;
+    q.add(new Pair(root,0 ));
+    while(!q.isEmpty()){
+      Pair front = q.remove();
+      if (front.level != currentLevel){
+        currentLevel++;
+        System.out.println();
+      }
+      System.out.print(front.node.val+" ");
+      if (front.node.left!=null) q.add(new Pair(front.node.left, front.level+1));
+      if (front.node.right!=null) q.add(new Pair(front.node.right, front.level+1));
+    }
+    System.out.println();
   }
 
   private static void display(Node root){
