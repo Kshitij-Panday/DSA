@@ -58,6 +58,9 @@ public class Implementation {
 
     System.out.println("level Order Traversal Level Wise of the Tree");
     levelOrderTraversalLevelWise(a);
+
+    System.out.println("Print the Kth level nodes");
+    kThLevel(a,0,2);
   }
 
   private static int size(Node root) {
@@ -67,7 +70,7 @@ public class Implementation {
 
 
   private static int sum(Node root){
-    if (root == null) return 0; //we are returning zero for additive identity as when the root is null we want to put 0 in the plade of the sum(root.left) and root.right calls.
+    if (root == null) return 0; //we are returning zero for additive identity as when the root is null we want to put 0 in the place of the sum(root.left) and root.right calls.
   return root.val+sum(root.left)+sum(root.right);
   }
   private static int product(Node root){
@@ -112,6 +115,13 @@ public class Implementation {
       if (front.node.right!=null) q.add(new Pair(front.node.right, front.level+1));
     }
     System.out.println();
+  }
+
+  public static void kThLevel(Node root, int level, int k){
+    if (root== null) return ;
+    if(level == k) System.out.print(root.val+" ");
+    kThLevel(root.left,level+1,k);
+    kThLevel(root.right,level+1,k);
   }
 
   private static void display(Node root){
